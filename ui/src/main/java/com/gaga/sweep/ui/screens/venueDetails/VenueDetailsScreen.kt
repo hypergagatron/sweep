@@ -32,7 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.gaga.sweep.domain.DataStatus
-import com.gaga.sweep.domain.models.Venue
 import com.gaga.sweep.ui.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,12 +64,14 @@ fun VenueDetailsScreen(
                     )
                 )
 
-                Text(
-                    text = name ?: "",
-                    modifier = Modifier.padding(16.dp),
-                    color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.headlineMedium
-                )
+                name?.let { name ->
+                    Text(
+                        text = name,
+                        modifier = Modifier.padding(16.dp),
+                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.headlineMedium
+                    )
+                }
 
                 if (!images.isNullOrEmpty()) {
                     HorizontalMultiBrowseCarousel(

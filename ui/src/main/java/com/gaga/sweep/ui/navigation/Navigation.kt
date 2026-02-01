@@ -83,7 +83,8 @@ fun Navigation() {
                         }
                     ) {
                         val viewModel: VenueSearchViewModel = hiltViewModel()
-                        val uiState by viewModel.searchResults.collectAsStateWithLifecycle()
+                        val searchResults by viewModel.searchResults.collectAsStateWithLifecycle()
+                        val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
 
                         val events = remember(viewModel) {
                             VenueSearchResultsEvents(
@@ -99,7 +100,7 @@ fun Navigation() {
                         }
 
                         VenueSearchResultsScreen(
-                            uiState = VenueSearchResultsUiState(uiState),
+                            uiState = VenueSearchResultsUiState(searchResults, searchQuery),
                             events = events
                         )
                     }

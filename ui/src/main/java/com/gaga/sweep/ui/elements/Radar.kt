@@ -29,7 +29,6 @@ import java.util.Random
 import kotlin.math.cos
 import kotlin.math.sin
 
-
 @Composable
 fun RadarDots(modifier: Modifier = Modifier.Companion) {
     Box(

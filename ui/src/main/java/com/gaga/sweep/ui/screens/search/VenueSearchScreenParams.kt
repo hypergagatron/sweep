@@ -11,5 +11,6 @@ data class VenueSearchResultsEvents(
 )
 
 data class VenueSearchResultsUiState(
-    val results: DataStatus<List<Venue>>
+    val results: DataStatus<List<Venue>>,
+    val query: String
 )

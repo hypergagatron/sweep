@@ -88,8 +88,6 @@ fun VenueSearchResultsScreen(
         }
     }
 
-    var query by remember { mutableStateOf("") }
-
     Scaffold(
         topBar = {
             Column(
@@ -100,8 +98,8 @@ fun VenueSearchResultsScreen(
                 SearchBar(
                     inputField = {
                         SearchBarDefaults.InputField(
-                            query = query,
-                            onQueryChange = { query = it },
+                            query = uiState.query,
+                            onQueryChange = {  events.onSearchTermChanged(it) },
                             onSearch = {
                                 keyboardController?.hide()
                                 events.onSearchTermChanged(it)

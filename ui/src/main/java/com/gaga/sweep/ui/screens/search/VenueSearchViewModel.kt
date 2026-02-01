@@ -11,6 +11,8 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
@@ -21,10 +23,12 @@ class VenueSearchViewModel @Inject constructor(
     private val venuesRepository: VenueRepository
 ) : ViewModel() {
 
-    private val searchQuery = MutableStateFlow("")
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     val searchResults: StateFlow<DataStatus<List<Venue>>> = searchQuery
+        .debounce { 400 }
         .filter { it.isNotEmpty() }
         .flatMapLatest { query ->
             venuesRepository.getMatchingVenuesInRadius(query)
@@ -37,7 +41,7 @@ class VenueSearchViewModel @Inject constructor(
 
     fun onSearch(query: String) {
         if (query.isNotEmpty()) {
-            searchQuery.value = query
+            _searchQuery.value = query
         }
     }
 }

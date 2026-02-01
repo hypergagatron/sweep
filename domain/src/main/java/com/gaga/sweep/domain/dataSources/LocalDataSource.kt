@@ -1,8 +1,6 @@
 package com.gaga.sweep.domain.dataSources
 
 import com.gaga.sweep.domain.DataStatus
-import com.gaga.sweep.domain.models.Venue
-import com.gaga.sweep.domain.models.VenueSearchParams
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource<P, T> {
