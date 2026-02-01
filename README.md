@@ -33,6 +33,7 @@ generic classes to access corresponding data types, and to send relevant fetched
 
 In addition, for passing data, seald class DataSource is defined, which signals the current state of data retrieval process.
 Both of Success and Failure subclasses can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
+![overlaping areas](areas.png)
 
 ## UI
 The app takes advantage of simple theming setup in JetpackCompose, endorcing dark theme with bright colors, 

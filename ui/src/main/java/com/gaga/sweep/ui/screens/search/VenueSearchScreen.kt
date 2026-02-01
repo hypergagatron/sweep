@@ -43,8 +43,6 @@ import com.gaga.sweep.domain.DataStatus
 import com.gaga.sweep.domain.models.Venue
 import com.gaga.sweep.ui.R
 import com.gaga.sweep.ui.elements.RadarAnimation
-import com.gaga.sweep.ui.screens.venueDetails.VenueSearchResultsEvents
-import com.gaga.sweep.ui.screens.venueDetails.VenueSearchResultsUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
