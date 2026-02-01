@@ -24,6 +24,9 @@ Domain layer is without dependencies to other modules
 Data and UI layer depend on Domain layer
 App module handles dependency injection.
 
+#### UI layer architecture 
+The project uses unidirectional 
+
 ## Approach to data fetching and caching and offline access
 Synchronization logic of online and offline data lies in DataOrchestrator generic class that uses LocalDataSource and RemoteDataSource 
 generic classes to access corresponding data types, and to send relevant fetched data towards collectors.
@@ -46,6 +49,10 @@ Defining standard measures for spacings instead of hardcoding
 Caching previous search terms and showing them below search field
 
 Adding tests
+
+Moving screen parts into separate composables for clarity
+
+Adding previews for composables
 
 Giving user the chance to select desired search radius
 
