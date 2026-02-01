@@ -35,14 +35,6 @@ import com.gaga.sweep.domain.DataStatus
 import com.gaga.sweep.domain.models.Venue
 import com.gaga.sweep.ui.R
 
-data class VenueDetailsUiState(
-    val venueStatus: DataStatus<Venue>
-)
-
-data class VenueDetailsEvents(
-    val onBack: () -> Unit
-)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun VenueDetailsScreen(

@@ -60,8 +60,7 @@ fun StartScreen(
         Spacer(Modifier.height(40.dp))
 
         Button(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = onSearch
         ) {
             Text(stringResource(R.string.start_cta))

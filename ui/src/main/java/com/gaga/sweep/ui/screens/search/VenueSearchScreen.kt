@@ -43,17 +43,8 @@ import com.gaga.sweep.domain.DataStatus
 import com.gaga.sweep.domain.models.Venue
 import com.gaga.sweep.ui.R
 import com.gaga.sweep.ui.elements.RadarAnimation
-
-data class VenueSearchResultsEvents(
-    val onLocationPermissionGiven: () -> Unit,
-    val onLocationPermissionRejected: () -> Unit,
-    val onSearchTermChanged: (String) -> Unit,
-    val onVenueClick: (String) -> Unit
-)
-
-data class VenueSearchResultsUiState(
-    val results: DataStatus<List<Venue>>
-)
+import com.gaga.sweep.ui.screens.venueDetails.VenueSearchResultsEvents
+import com.gaga.sweep.ui.screens.venueDetails.VenueSearchResultsUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -194,7 +185,6 @@ fun VenueSearchResultsScreen(
         }
     }
 }
-
 
 @Composable
 fun VenueItem(

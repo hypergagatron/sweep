@@ -37,8 +37,8 @@ val SweepTypography = Typography(
     labelMedium = TextStyle(
         fontFamily = Martian,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontSize = 11.sp,
         lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.3.sp
     )
 )

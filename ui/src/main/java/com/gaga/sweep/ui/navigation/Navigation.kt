@@ -7,6 +7,7 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -28,19 +29,24 @@ import com.gaga.sweep.ui.screens.venueDetails.VenueDetailsViewModel
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 
-
 @Composable
 fun Navigation() {
     val backStack = rememberNavBackStack(
         configuration = SavedStateConfiguration {
             serializersModule = SerializersModule {
                 polymorphic(NavKey::class) {
-                    subclass(ScreenKey.Start::class, ScreenKey.Start.serializer())
+                    subclass(
+                        ScreenKey.Start::class,
+                        ScreenKey.Start.serializer()
+                    )
                     subclass(
                         ScreenKey.SearchResults::class,
                         ScreenKey.SearchResults.serializer()
                     )
-                    subclass(ScreenKey.VenueDetails::class, ScreenKey.VenueDetails.serializer())
+                    subclass(
+                        ScreenKey.VenueDetails::class,
+                        ScreenKey.VenueDetails.serializer()
+                    )
                 }
             }
         }, ScreenKey.Start
@@ -79,11 +85,10 @@ fun Navigation() {
                         val viewModel: VenueSearchViewModel = hiltViewModel()
                         val uiState by viewModel.searchResults.collectAsStateWithLifecycle()
 
-                        VenueSearchResultsScreen(
-                            uiState = VenueSearchResultsUiState(uiState),
-                            events = VenueSearchResultsEvents(
+                        val events = remember(viewModel) {
+                            VenueSearchResultsEvents(
                                 onSearchTermChanged = { searchTerm ->
-                                    viewModel.onSearchTermUpdated(
+                                    viewModel.onSearch(
                                         searchTerm
                                     )
                                 },
@@ -91,6 +96,11 @@ fun Navigation() {
                                 onLocationPermissionRejected = {},
                                 onVenueClick = { id -> backStack.add(ScreenKey.VenueDetails(id)) }
                             )
+                        }
+
+                        VenueSearchResultsScreen(
+                            uiState = VenueSearchResultsUiState(uiState),
+                            events = events
                         )
                     }
                 }
@@ -103,13 +113,16 @@ fun Navigation() {
                         LaunchedEffect(key.id) {
                             viewModel.getVenue(key.id)
                         }
+
                         VenueDetailsScreen(
                             VenueDetailsUiState(uiState),
-                            VenueDetailsEvents(onBack = {
-                                if (backStack.size > 1) {
-                                    backStack.removeAt(backStack.lastIndex)
+                            VenueDetailsEvents(
+                                onBack = {
+                                    if (backStack.size > 1) {
+                                        backStack.removeAt(backStack.lastIndex)
+                                    }
                                 }
-                            })
+                            )
                         )
                     }
                 }
