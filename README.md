@@ -38,7 +38,7 @@ Specific challenge in data retrieval from the local database is filtering result
 a lot of venues with matching names but outside of the current search area, and partial data fetched in previous online searches located in desired area.
 Both of these issues are solved by filtering via Haversine algorithm after retrieving veneus with matching names from the database.
 
-<img src="areas.png" alt="overlaping areas" width="500">
+<img src="areas.png" alt="overlaping areas" width="400">
 
 ## UI
 The app takes advantage of simple theming setup in JetpackCompose, endorcing dark theme with bright colors, 
