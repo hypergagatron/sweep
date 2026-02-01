@@ -1,5 +1,6 @@
 package com.gaga.sweep.ui.screens.search
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gaga.sweep.domain.DataStatus
@@ -20,11 +21,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class VenueSearchViewModel @Inject constructor(
-    private val venuesRepository: VenueRepository
+    private val venuesRepository: VenueRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _searchQuery = MutableStateFlow("")
-    val searchQuery = _searchQuery.asStateFlow()
+    val searchQuery = savedStateHandle.getStateFlow("search_query", "")
 
     @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     val searchResults: StateFlow<DataStatus<List<Venue>>> = searchQuery
@@ -41,7 +42,7 @@ class VenueSearchViewModel @Inject constructor(
 
     fun onSearch(query: String) {
         if (query.isNotEmpty()) {
-            _searchQuery.value = query
+            savedStateHandle["search_query"] = query
         }
     }
 }
