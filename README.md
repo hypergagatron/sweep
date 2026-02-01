@@ -25,7 +25,7 @@ Data and UI layer depend on Domain layer
 App module handles dependency injection.
 
 #### UI layer architecture 
-The project uses unidirectional 
+The project uses unidirectional data flow via MVI pattern. Collection of UI event callbacks and UI state are the only params passed to the composables.
 
 ## Approach to data fetching and caching and offline access
 Synchronization logic of online and offline data lies in DataOrchestrator generic class that uses LocalDataSource and RemoteDataSource 
