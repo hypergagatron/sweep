@@ -33,6 +33,7 @@ generic classes to access corresponding data types, and to send relevant fetched
 
 In addition, for passing data, seald class DataSource is defined, which signals the current state of data retrieval process.
 Both of Success and Failure subclasses can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
+<img src="data_flow.png" alt="overlaping areas" width="500">
 
 Specific challenge in data retrieval from the local database is filtering results for current surrounding area of the user - in the database, there might be 
 a lot of venues with matching names but outside of the current search area, and partial data fetched in previous online searches located in desired area.
