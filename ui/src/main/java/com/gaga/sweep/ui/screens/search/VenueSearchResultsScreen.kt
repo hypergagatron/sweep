@@ -158,7 +158,7 @@ fun VenueSearchResultsScreen(
             when (uiState.results) {
                 is DataStatus.Loading -> {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        RadarAnimation(modifier = Modifier.size(100.dp))
+                        RadarAnimation(modifier = Modifier.size(100.dp), speed = 2)
                     }
                 }
 

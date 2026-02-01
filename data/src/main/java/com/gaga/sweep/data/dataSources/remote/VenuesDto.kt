@@ -2,7 +2,6 @@ package com.gaga.sweep.data.dataSources.remote
 
 import com.gaga.sweep.domain.models.Venue
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,7 +19,6 @@ data class VenueDto(
     val longitude: Double?,
 
     val location: LocationDto?,
-    val hours: HoursDto? = null,
     val photos: List<PhotoDto>? = emptyList(),
     val tel: String? = null,
     val email: String? = null,
@@ -31,12 +29,6 @@ data class VenueDto(
 data class LocationDto(
     @SerializedName("formatted_address")
     val formattedAddress: String?
-)
-
-@Serializable
-data class HoursDto(
-    val display: String? = null,
-    @SerialName("open_now") val openNow: Boolean? = null
 )
 
 @Serializable
@@ -57,6 +49,6 @@ fun VenueDto.toDomain() = Venue(
         "https://images.pexels.com/photos/35664914/pexels-photo-35664914.jpeg?_gl=1*u5qz5j*_ga*MTA2NDc1MzEzMC4xNzY5OTcwMjYw*_ga_8JE65Q40S6*czE3Njk5NzAyNjAkbzEkZzEkdDE3Njk5NzAyOTkkajIxJGwwJGgw"
     ),
     address = location?.formattedAddress,
-    hours = hours?.display,
-    tel
+    contact = tel,
+    website = website
 )

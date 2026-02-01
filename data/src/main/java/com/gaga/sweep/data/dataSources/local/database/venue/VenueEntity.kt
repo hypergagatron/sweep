@@ -7,7 +7,6 @@ import androidx.room.TypeConverter
 import com.gaga.sweep.domain.models.Venue
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.Address
 
 class RoomConverters {
     private val gson = Gson()
@@ -33,10 +32,10 @@ data class VenueEntity(
     val lat: Double?,
     val imageUrls: List<String>?,
     val address: String?,
-    val hours: String?,
-    val contact: String?
+    val contact: String?,
+    val website: String?
 )
 
-fun VenueEntity.toDomain() = Venue(id, name, lon, lat, imageUrls, address, hours, contact)
+fun VenueEntity.toDomain() = Venue(id, name, lon, lat, imageUrls, address, contact, website)
 
-fun Venue.toEntity() = VenueEntity(id, name, lon, lat, imageUrls, address, hours, contact)
+fun Venue.toEntity() = VenueEntity(id, name, lon, lat, imageUrls, address, contact, website)

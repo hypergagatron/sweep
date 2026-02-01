@@ -55,6 +55,7 @@ fun RadarDots(modifier: Modifier = Modifier.Companion) {
 
 @Composable
 fun RadarSweep(
+    speed: Int,
     modifier: Modifier = Modifier.Companion
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "Rotation")
@@ -62,7 +63,7 @@ fun RadarSweep(
         initialValue = 0f,
         targetValue = 360f,
         animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = LinearEasing),
+            animation = tween(4000/speed, easing = LinearEasing),
             repeatMode = RepeatMode.Restart
         ),
         label = "Angle"
@@ -133,6 +134,7 @@ fun RadarGrid(
 @Composable
 fun RadarAnimation(
     isAnimating: Boolean = true,
+    speed: Int,
     modifier: Modifier = Modifier.Companion
 ) {
 
@@ -153,7 +155,8 @@ fun RadarAnimation(
             RadarSweep(
                 modifier = Modifier
                     .fillMaxSize()
-                    .aspectRatio(1f)
+                    .aspectRatio(1f),
+                speed = speed
             )
         }
 

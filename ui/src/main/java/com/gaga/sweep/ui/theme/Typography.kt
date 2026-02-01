@@ -18,9 +18,8 @@ val SweepTypography = Typography(
     displayLarge = TextStyle(
         fontFamily = Martian,
         fontWeight = FontWeight.Bold,
-        fontSize = 48.sp,
-        lineHeight = 64.sp,
-        letterSpacing = (-0.25).sp
+        fontSize = 44.sp,
+        lineHeight = 64.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = Martian,

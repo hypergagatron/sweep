@@ -21,7 +21,6 @@ import com.gaga.sweep.ui.elements.RadarAnimation
 
 @Composable
 fun StartScreen(
-    modifier: Modifier = Modifier,
     onSearch: () -> Unit
 ) {
 
@@ -31,8 +30,7 @@ fun StartScreen(
         verticalArrangement = Arrangement.Center,
     ) {
         Text(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             text = stringResource(R.string.start_title),
             style = MaterialTheme.typography.displayLarge,
@@ -42,8 +40,7 @@ fun StartScreen(
         Spacer(Modifier.height(16.dp))
 
         Text(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 64.dp),
             textAlign = TextAlign.Center,
             text = stringResource(R.string.start_description),
             style = MaterialTheme.typography.headlineMedium,
@@ -53,10 +50,11 @@ fun StartScreen(
         Spacer(Modifier.height(24.dp))
 
         RadarAnimation(
-            isAnimating = false,
+            isAnimating = true,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .size(200.dp)
+                .size(200.dp),
+            speed = 1
         )
 
         Spacer(Modifier.height(40.dp))

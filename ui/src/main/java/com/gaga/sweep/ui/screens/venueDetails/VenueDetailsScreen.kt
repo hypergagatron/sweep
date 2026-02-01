@@ -1,12 +1,16 @@
 package com.gaga.sweep.ui.screens.venueDetails
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -22,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -72,7 +77,7 @@ fun VenueDetailsScreen(
                     text = name ?: "",
                     modifier = Modifier.padding(16.dp),
                     color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.displayLarge
+                    style = MaterialTheme.typography.headlineMedium
                 )
 
                 if (!images.isNullOrEmpty()) {
@@ -80,8 +85,9 @@ fun VenueDetailsScreen(
                         state = rememberCarouselState { images.size },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(220.dp),
-                        preferredItemWidth = 300.dp,
+                            .height(300.dp)
+                            .padding(vertical = 16.dp),
+                        preferredItemWidth = 320.dp,
                         itemSpacing = 8.dp,
                         contentPadding = PaddingValues(horizontal = 16.dp)
                     ) { index ->
@@ -97,9 +103,9 @@ fun VenueDetailsScreen(
                 }
 
                 Column(modifier = Modifier.padding(16.dp)) {
-                    InfoItem(address)
-                    InfoItem(hours)
-                    InfoItem(contact)
+                    InfoItem(R.drawable.ic_location, address)
+                    InfoItem(R.drawable.ic_phone, contact)
+                    InfoItem(R.drawable.ic_link, website)
                 }
             }
         }
@@ -107,15 +113,26 @@ fun VenueDetailsScreen(
 }
 
 @Composable
-private fun InfoItem(text: String?) {
-    if (text != null) {
+private fun InfoItem(
+    @DrawableRes iconRes: Int,
+    text: String?
+) {
+    if (!text.isNullOrEmpty()) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(vertical = 12.dp)
         ) {
+            Image(
+                painterResource(iconRes),
+                "Icon",
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground)
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
             Text(
                 text = text,
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.secondary
             )
         }

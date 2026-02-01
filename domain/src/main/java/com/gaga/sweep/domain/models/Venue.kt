@@ -8,6 +8,6 @@ data class Venue(
 
     val imageUrls: List<String>? = null,
     val address: String? = null,
-    val hours: String? = null,
-    val contact: String? = null
+    val contact: String? = null,
+    val website: String? = null
 )
