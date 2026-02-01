@@ -28,8 +28,8 @@ App module handles dependency injection.
 The project uses unidirectional data flow via MVI pattern. Collection of UI event callbacks and UI state are the only params passed to the composables.
 
 ## Approach to data fetching and caching and offline access
-Synchronization logic of online and offline data lies in DataOrchestrator generic class that uses LocalDataSource and RemoteDataSource 
-generic classes to access corresponding data types, and to send relevant fetched data towards collectors.
+Synchronization logic of online and offline data happens in repository using DataOrchestrator class that uses LocalDataSource and RemoteDataSource 
+interface implementations to access corresponding data types, coordinate their interactions and to send relevant fetched data towards collectors.
 
 In addition, for passing data, seald class DataSource is defined, which signals the current state of data retrieval process.
 Both of Success and Failure subclasses can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
