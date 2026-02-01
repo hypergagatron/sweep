@@ -1,3 +1,4 @@
+## Project requirements
 
 
 
@@ -14,7 +15,7 @@ if user is offline, entries saved in database are filtered
 
 
 
-## What can be improved
+## For future improvement
 Error parsing and handling: Instead of passing hardcoded string for general errors, specific parsing 
 and classifications of errors can be done to provide the user with more specific error messages and UI
 
@@ -25,3 +26,5 @@ Defining standard measures instead of hardcoding
 Caching previous searches and showing them below search field
 
 Adding tests
+
+Giving user the chance to select desired search radius
