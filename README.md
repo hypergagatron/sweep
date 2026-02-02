@@ -24,7 +24,7 @@ venues, with support for offline mode
 
 #### Constraints
 
-Project requirements define displaying of pictures, opening hours and description of venues, but at this moment, these pieces of info are behind the paywall. For illustration purposes, 3 links are hardcoded as example image urls. Opening hours and description are not displayed.
+Project requirements list displaying of pictures, opening hours and description of venues, but at this moment, these pieces of information are behind the paywall in the FoursqareAPI. For illustration purposes, 3 links are hardcoded as example image urls. Opening hours and description are not displayed.
 
 ## Running the project
 The project is using local properties for storing api key to avoid its public exposal on github.
@@ -43,7 +43,7 @@ To adhere to clean architecture and enforce separation of concerns, the app is s
 
 - Domain layer has no dependencies to other modules
 - Data and UI layer depend on Domain layer
-- App module depends on all 3 modules and provides dependency injection
+- App module depends on all 3 modules in  order to set up dependency injection
 
 #### UI layer architecture 
 The project adheres to unidirectional data flow principle via MVI pattern and Jetpack Compose based UI. 
