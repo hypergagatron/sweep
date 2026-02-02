@@ -20,7 +20,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val BASE_URL = "https://places-api.foursquare.com/"
-    private val bearerToken = BuildConfig.FOURSQUARE_API_KEY
+    private const val bearerToken = BuildConfig.FOURSQUARE_API_KEY
 
     @Provides
     @Singleton

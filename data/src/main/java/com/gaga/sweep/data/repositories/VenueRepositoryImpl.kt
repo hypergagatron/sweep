@@ -9,6 +9,7 @@ import com.gaga.sweep.domain.models.Venue
 import com.gaga.sweep.domain.models.VenueSearchParams
 import com.gaga.sweep.domain.repositories.VenueRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
@@ -37,8 +38,7 @@ class VenueRepositoryImpl @Inject constructor(
                 )
 
                 val dataOrchestrator = DataOrchestrator(localDataSource, remoteDataSource)
-
-                dataOrchestrator.getItems(venueParams).collect { result -> emit(result) }
+                emitAll(dataOrchestrator.getItems(venueParams))
             }
         } else {
             emit(DataStatus.Failure(Throwable("Location not available, cannot retrieve data")))
