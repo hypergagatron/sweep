@@ -1,3 +1,20 @@
+# Sweep
+
+Sweep is venue search app build on top of Foursquare Search API
+
+<table>
+  <tr>
+    <td width="33%"><img src="s1.png" alt="Description"></td>
+    <td width="33%"><img src="s2.png" alt="Description"></td>
+    <td width="33%"><img src="s3.png" alt="Description"></td>
+  </tr>
+  <tr>
+    <td><img src="s6.png" alt="Description"></td>
+    <td><img src="s5.png" alt="Description"></td>
+    <td><img src="s4.png" alt="Description"></td>
+  </tr>
+</table>
+
 ## Project requirements
 
 - Develop a mini Android application that uses the Foursquare API to search for and display details about 
@@ -7,12 +24,14 @@ venues, with support for offline mode
 
 #### Constraints
 
-Project requirements define displaying of pictures, opening hours and description of venues, but at this moment, these pieces of info are behind the paywall. For illustration purposes, 3 links are hardcoded as example image urls. Opening hours and description are not displayed.
+Project requirements list displaying of pictures, opening hours and description of venues, but at this moment, these pieces of information are behind the paywall in the FoursqareAPI. For illustration purposes, 3 links are hardcoded as example image urls. Opening hours and description are not displayed.
 
 ## Running the project
 The project is using local properties for storing api key to avoid its public exposal on github.
-In local.properties file add line: 
-FSQ_API_KEY=your_key
+
+After cloning the project, in `local.properties` file add line: 
+
+```FSQ_API_KEY=your_key```
 
 ## Structuring the project
 To adhere to clean architecture and enforce separation of concerns, the app is separated in 3 layers:
@@ -22,20 +41,22 @@ To adhere to clean architecture and enforce separation of concerns, the app is s
 
 <img src="modules.png" alt="modules" width="500">
 
-Domain layer has no dependencies to other modules
-Data and UI layer depend on Domain layer
-App module depends on all 3 modules and provides dependency injection
+- Domain layer has no dependencies to other modules
+- Data and UI layer depend on Domain layer
+- App module depends on all 3 modules in  order to set up dependency injection
 
 #### UI layer architecture 
-The project uses unidirectional data flow via MVI pattern and Jetpack Compose based UI. 
+The project adheres to unidirectional data flow principle via MVI pattern and Jetpack Compose based UI. 
 Navigation is set up via Jetpack Navigation 3. 
 
-## Approach to data fetching and caching and offline access
-Synchronization logic of remote and local data is implemented in Repository using DataOrchestrator that uses LocalDataSource and RemoteDataSource 
-implementations to access corresponding data types, coordinate their interactions and emit relevant fetched data.
+## Data fetching / caching and offline access approach
+The app relies on caching via relational database Room to enable offline access to the user.
 
-For wrapping data, sealed class DataState is defined, which signals the current state of data retrieval process.
-Both of Success and Failure subclasses of DataState can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
+Synchronization logic of remote and local data is implemented in Repository using DataOrchestrator that relies on LocalDataSource and RemoteDataSource 
+implementations to access corresponding data types, coordinate their manipulation and emit relevant fetched data.
+
+Sealed class DataStatus is used for wrapping data and signaling the current state of data retrieval process.
+Both of Success and Failure subclasses of DataStatus can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
 <img src="data_flow.png" alt="data flow" width="500">
 
 Specific challenge in data retrieval from the local database is filtering results for current surrounding area of the user - in the database, there might be 
@@ -49,8 +70,8 @@ The app takes advantage of simple theming setup in JetpackCompose, enforcing dar
 custom font and custom animation made in Compose to convey the Radar-inspired imagery to the user. 
 
 ## For future improvement
-Error parsing and handling: Instead of passing hardcoded string for general errors, specific parsing 
-and classifications of errors can be done to provide the user with more specific error messages and UI
+Structured error parsing and handling: Instead of passing hardcoded strings, specialized sealed class can be created to enumerate 
+errors to provide the user with more specific error messages and UI
 
 UseCases instead of Repository: this approach could emphasize single responsibility principle in bussiness logic area
 
