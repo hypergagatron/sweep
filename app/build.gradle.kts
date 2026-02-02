@@ -60,7 +60,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
     implementation(libs.compose.material3)
-    ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.3.0")
+    ksp(libs.kotlin.metadata)
 
     implementation(libs.hilt.navigation.compose)
 
