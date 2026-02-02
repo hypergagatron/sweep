@@ -11,9 +11,12 @@ appcompat = "1.7.1"
 material = "1.13.0"
 lifecycleViewmodel = "2.10.0"
 
+locationServices = "21.0.1"
+
 navigation3 = "1.0.0"
 nav3Material = "1.3.0-alpha07"
 kotlinSerialization = "1.10.0"
+serialicationConverter = "1.0.0"
 
 room = "2.8.4"
 composeBom = "2026.01.01"
@@ -35,6 +38,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "j
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+android-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "locationServices" }
 
 # Room
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
@@ -54,6 +58,8 @@ androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecy
 androidx-material3-navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "nav3Material" }
 kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 androidx-navigation3-compose = { module = "androidx.navigation3:navigation3-compose", version.ref = "navigation3" }
+serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "serialicationConverter" }
+coil = {module = "io.coil-kt:coil-compose", version.ref = "coil"}
 
 # Retrofit & Networking
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

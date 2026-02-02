@@ -58,7 +58,8 @@ dependencies {
     implementation(libs.androidx.material3)
     ksp(libs.hilt.compiler)
 
-    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
 
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.navigation3.runtime)

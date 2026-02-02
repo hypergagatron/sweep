@@ -28,9 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
+import coil3.request.CachePolicy
+import coil3.request.ImageRequest
+import coil3.request.crossfade
 import com.gaga.sweep.domain.DataStatus
 import com.gaga.sweep.ui.R
 
@@ -85,7 +89,12 @@ fun VenueDetailsScreen(
                         contentPadding = PaddingValues(horizontal = 16.dp)
                     ) { index ->
                         AsyncImage(
-                            model = images[index],
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(images[index])
+                                .crossfade(true)
+                                .diskCachePolicy(CachePolicy.ENABLED)
+                                .memoryCachePolicy(CachePolicy.ENABLED)
+                                .build(),
                             contentDescription = null,
                             contentScale = ContentScale.Crop,
                             modifier = Modifier

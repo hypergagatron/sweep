@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.library)
@@ -63,27 +63,25 @@ kotlin {
 
 dependencies {
     implementation(project(":domain"))
+
+    ksp(libs.kotlin.metadata)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation(libs.android.location)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0")
-    ksp("org.jetbrains.kotlin:kotlin-metadata-jvm:2.3.0")
-
+    implementation(libs.kotlin.serialization.json)
+    implementation(libs.serialization.converter)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
 
-
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
-
 }
