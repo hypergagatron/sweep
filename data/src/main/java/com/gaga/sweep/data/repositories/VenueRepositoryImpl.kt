@@ -31,10 +31,10 @@ class VenueRepositoryImpl @Inject constructor(
             locationStatus.data?.let {
 
                 val venueParams = VenueSearchParams(
-                    query,
-                    it.latitude,
-                    it.longitude,
-                    radiusMeters
+                    query = query,
+                    lat = it.latitude,
+                    lon = it.longitude,
+                    radiusMeters = radiusMeters
                 )
 
                 val dataOrchestrator = DataOrchestrator(localDataSource, remoteDataSource)

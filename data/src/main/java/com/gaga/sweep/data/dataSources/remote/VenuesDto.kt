@@ -13,13 +13,11 @@ data class VenuesDto(
 data class VenueDto(
     @SerializedName("fsq_place_id")
     val fsqId: String,
-    val name: String? = "",
-    val description: String? = "",
+    val name: String?,
     val latitude: Double?,
     val longitude: Double?,
 
     val location: LocationDto?,
-    val photos: List<PhotoDto>? = emptyList(),
     val tel: String? = null,
     val email: String? = null,
     val website: String? = null
@@ -29,12 +27,6 @@ data class VenueDto(
 data class LocationDto(
     @SerializedName("formatted_address")
     val formattedAddress: String?
-)
-
-@Serializable
-data class PhotoDto(
-    val prefix: String?,
-    val suffix: String?
 )
 
 fun VenueDto.toDomain() = Venue(
