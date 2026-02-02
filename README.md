@@ -11,8 +11,10 @@ Project requirements define displaying of pictures, opening hours and descriptio
 
 ## Running the project
 The project is using local properties for storing api key to avoid its public exposal on github.
-In local.properties file add line: 
-FSQ_API_KEY=your_key
+
+After cloning the project, in `local.properties` file add line: 
+
+```FSQ_API_KEY=your_key```
 
 ## Structuring the project
 To adhere to clean architecture and enforce separation of concerns, the app is separated in 3 layers:
@@ -22,9 +24,9 @@ To adhere to clean architecture and enforce separation of concerns, the app is s
 
 <img src="modules.png" alt="modules" width="500">
 
-Domain layer has no dependencies to other modules
-Data and UI layer depend on Domain layer
-App module depends on all 3 modules and provides dependency injection
+- Domain layer has no dependencies to other modules
+- Data and UI layer depend on Domain layer
+- App module depends on all 3 modules and provides dependency injection
 
 #### UI layer architecture 
 The project uses unidirectional data flow via MVI pattern and Jetpack Compose based UI. 
@@ -32,7 +34,7 @@ Navigation is set up via Jetpack Navigation 3.
 
 ## Approach to data fetching and caching and offline access
 Synchronization logic of remote and local data is implemented in Repository using DataOrchestrator that uses LocalDataSource and RemoteDataSource 
-implementations to access corresponding data types, coordinate their interactions and emit relevant fetched data.
+implementations to access corresponding data types, coordinate their manipulation and emit relevant fetched data.
 
 For wrapping data, sealed class DataState is defined, which signals the current state of data retrieval process.
 Both of Success and Failure subclasses of DataState can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
