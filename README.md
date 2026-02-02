@@ -15,24 +15,28 @@ In local.properties file add line:
 FSQ_API_KEY=your_key
 
 ## Structuring the project
-In effort to use clean architecture, the app is separated in 3 layers:
+To adhere to clean architecture and enforce separation of concerns, the app is separated in 3 layers:
 - ui
 - domain
 - data
 
-Domain layer is without dependencies to other modules
+<img src="modules.png" alt="modules" width="500">
+
+Domain layer has no dependencies to other modules
 Data and UI layer depend on Domain layer
-App module handles dependency injection.
+App module depends on all 3 modules and provides dependency injection
 
 #### UI layer architecture 
-The project uses unidirectional data flow via MVI pattern. Collection of UI event callbacks and UI state are the only params passed to the composables.
+The project uses unidirectional data flow via MVI pattern and Jetpack Compose based UI. 
+Navigation is set up via Jetpack Navigation 3. 
 
 ## Approach to data fetching and caching and offline access
-Synchronization logic of online and offline data lies in DataOrchestrator generic class that uses LocalDataSource and RemoteDataSource 
-generic classes to access corresponding data types, and to send relevant fetched data towards collectors.
+Synchronization logic of remote and local data is implemented in Repository using DataOrchestrator that uses LocalDataSource and RemoteDataSource 
+implementations to access corresponding data types, coordinate their interactions and emit relevant fetched data.
 
-In addition, for passing data, seald class DataSource is defined, which signals the current state of data retrieval process.
-Both of Success and Failure subclasses can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
+For wrapping data, sealed class DataState is defined, which signals the current state of data retrieval process.
+Both of Success and Failure subclasses of DataState can carry data - this way, in the case of remote fetching failure, we can return cached data in addition to error.
+<img src="data_flow.png" alt="data flow" width="500">
 
 Specific challenge in data retrieval from the local database is filtering results for current surrounding area of the user - in the database, there might be 
 a lot of venues with matching names but outside of the current search area, and partial data fetched in previous online searches located in desired area.
@@ -40,8 +44,8 @@ Both of these issues are solved by filtering via Haversine algorithm after retri
 
 <img src="search_areas.png" alt="overlaping areas" width="500">
 
-## UI
-The app takes advantage of simple theming setup in JetpackCompose, endorcing dark theme with bright colors, 
+## Theming
+The app takes advantage of simple theming setup in JetpackCompose, enforcing dark theme with bright colors, 
 custom font and custom animation made in Compose to convey the Radar-inspired imagery to the user. 
 
 ## For future improvement
