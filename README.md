@@ -6,9 +6,9 @@
     <td width="33%"><img src="s3.png" alt="Description"></td>
   </tr>
   <tr>
-    <td><img src="s4.png" alt="Description"></td>
-    <td><img src="s5.png" alt="Description"></td>
     <td><img src="s6.png" alt="Description"></td>
+    <td><img src="s5.png" alt="Description"></td>
+    <td><img src="s4.png" alt="Description"></td>
   </tr>
 </table>
 
