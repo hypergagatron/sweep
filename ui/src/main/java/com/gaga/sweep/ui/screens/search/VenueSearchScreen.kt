@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -159,10 +160,11 @@ fun VenueSearchResultsScreen(
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
                             items(
-                                venues.size
-                            ) { venueIndex ->
+                                items = venues,
+                                key = { it.id },
+                            ) { venue ->
                                 VenueItem(
-                                    venues[venueIndex],
+                                    venue,
                                     events.onVenueClick
                                 )
                             }
@@ -189,8 +191,7 @@ fun VenueItem(
             .clickable { onVenueClick(venue.id) }) {
 
         Column(
-            modifier = Modifier
-                .padding(16.dp)
+            modifier = Modifier.padding(16.dp)
         ) {
             Text(text = venue.name ?: "", style = MaterialTheme.typography.bodyLarge)
         }

@@ -94,7 +94,9 @@ fun Navigation() {
                                     )
                                 },
                                 onLocationPermissionGiven = {},
-                                onLocationPermissionRejected = {},
+                                onLocationPermissionRejected = {
+                                    /* TODO: Consider showing dialog with relevant message */
+                                },
                                 onVenueClick = { id -> backStack.add(ScreenKey.VenueDetails(id)) }
                             )
                         }
