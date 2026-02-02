@@ -1,14 +1,14 @@
 
 <table>
   <tr>
-    <td width="33%"><img src="s1.jpg" alt="Description"></td>
-    <td width="33%"><img src="s2.jpg" alt="Description"></td>
-    <td width="33%"><img src="s3.jpg" alt="Description"></td>
+    <td width="33%"><img src="s1.png" alt="Description"></td>
+    <td width="33%"><img src="s2.png" alt="Description"></td>
+    <td width="33%"><img src="s3.png" alt="Description"></td>
   </tr>
   <tr>
-    <td><img src="s4.jpg" alt="Description"></td>
-    <td><img src="s5.jpg" alt="Description"></td>
-    <td><img src="s6.jpg" alt="Description"></td>
+    <td><img src="s4.png" alt="Description"></td>
+    <td><img src="s5.png" alt="Description"></td>
+    <td><img src="s6.png" alt="Description"></td>
   </tr>
 </table>
 
