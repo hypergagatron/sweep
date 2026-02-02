@@ -1,3 +1,6 @@
+# Sweep
+
+Sweep is venue search app build on top of Foursquare Search API
 
 <table>
   <tr>
